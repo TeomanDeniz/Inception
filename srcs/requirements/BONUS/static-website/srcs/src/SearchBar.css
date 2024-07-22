@@ -1,0 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   SearchBar.css                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hdeniz <Discord:@teomandeniz>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/22 12:48:13 by hdeniz            #+#    #+#             */
+/*   Updated: 2024/07/22 12:51:01 by hdeniz           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+.search-input
+{
+	WIDTH: 100%;
+	PADDING: 12PX 20PX;
+	MARGIN: 8PX 0;
+	DISPLAY: INLINE-BLOCK;
+	BORDER: 1PX SOLID #CCC;
+	BOX-SIZING: BORDER-BOX;
+	TEXT-ALIGN: CENTER; 
+	FONT-SIZE: 20PX;
+}
+
+.search-input::placeholder
+{ 
+	COLOR: GREY;
+	TEXT-ALIGN: CENTER;
+	FONT-SIZE: 15PX;
+}
+
+.search-button
+{
+	BACKGROUND-COLOR: #4CAF50;
+	COLOR: WHITE;
+	PADDING: 14PX 20PX;
+	MARGIN: 8PX 0;
+	BORDER: NONE;
+	CURSOR: POINTER;
+	WIDTH: 100%;
+	OPACITY: 0.9;
+}
