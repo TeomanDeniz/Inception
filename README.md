@@ -14,11 +14,9 @@ sudo ufw active
 In Virtual box, go to `Settings` -> `Network` -> `Advenced` -> `Port Forwading` and add a new port protocol.
 
 ```
-/*
-    Protocol -> TCP
-    Main Port Forwarding -> 4242
-    Guest Port Forwarding -> 4242
-*/
+Protocol -> TCP
+Main Port Forwarding -> 4242
+Guest Port Forwarding -> 4242
 ```
 
 Then just reboot your virtual machine.
