@@ -133,6 +133,10 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 After you finished all these, you're pretty done the project. All you need to do is edit the [**.env**](https://github.com/TeomanDeniz/Inception/blob/main/srcs/.conf) file and some other files inside of the project for cusomizing your website.
 
+You also need to edit some files inside of the project.
+
+* `./srcs/requirements/nginx/conf/http.conf` && `./srcs/requirements/nginx/conf/https.conf` - Add the needed variables on the upper case texts from you `.env` file.
+
 ## Makefile
 
 * `all` - Compile the server
