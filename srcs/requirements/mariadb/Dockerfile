@@ -12,10 +12,6 @@
 
 FROM debian:bullseye
 RUN set -eux ; echo 'Acquire::Retries "5";' > /etc/apt/apt.conf.d/80-retries
-ARG MYSQL_DATABASE
-ARG MYSQL_USER
-ARG MYSQL_PASSWORD
-ARG MYSQL_ROOT_PASSWORD
 RUN apt -y update && apt -y upgrade
 RUN apt -y install mariadb-server mariadb-client
 RUN mkdir -p /var/lib/mysql /var/run/mysqld

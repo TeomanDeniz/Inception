@@ -12,9 +12,6 @@
 
 FROM debian:bullseye
 RUN set -eux ; echo 'Acquire::Retries "5";' > /etc/apt/apt.conf.d/80-retries
-ARG DOMAIN_NAME
-ARG CERTS_KEY
-ARG CERTS_CRT
 RUN apt -y update && apt -y upgrade
 RUN apt -y install nginx openssl 
 RUN openssl req -x509 -sha256 -nodes \

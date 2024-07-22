@@ -11,9 +11,6 @@
 # **************************************************************************** #
 
 FROM debian:bullseye
-ARG MYSQL_DATABASE
-ARG MYSQL_USER
-ARG MYSQL_PASSWORD
 RUN set -eux ; echo 'Acquire::Retries "5";' > /etc/apt/apt.conf.d/80-retries
 RUN apt -y update && apt -y upgrade
 RUN apt -y install wget php7.4-fpm php7.4-mysql mariadb-client
