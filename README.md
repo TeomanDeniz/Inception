@@ -35,6 +35,8 @@ ssh -p 4242 USER@localhost
 ssh -p 4242 root@localhost
 ```
 
+* If you get something like "**WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!**" during your connection, just use `rm ~/.ssh/known_hosts` command and retry again.
+
 # Getting started
 
 Just install necessary packages for this step. Let's start with a package that runs `Makefile`
@@ -46,7 +48,7 @@ sudo apt-get install make -y
 Let's bypass our `localhost` connection to our domain address.
 
 ```sh
-sudo "127.0.0.1 YOUR_USERNAME.42.fr" >> /etc/hosts
+sudo echo "127.0.0.1 USERNAME.42.fr" >> /etc/hosts
 ```
 
 Let's also install a service to update our time and date automatically. [**Source 🔗**](https://superuser.com/questions/323062/how-to-set-debian-to-automatically-update-time-and-date)
