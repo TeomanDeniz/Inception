@@ -18,6 +18,10 @@ services:
       - .env
     build:
       context: ./requirements/nginx
+      args:
+        - DOMAIN_NAME
+        - CERTS_KEY
+        - CERTS_CRT
     expose:
       - 443
     networks:
@@ -40,6 +44,12 @@ services:
       - 9000
     build:
       context: ./requirements/wordpress
+      args:
+        - MYSQL_DATABASE
+        - MYSQL_USER
+        - MYSQL_PASSWORD
+        - MYSQL_ROOT_PASSWORD
+        - EMAIL
     networks:
       - connection
     volumes:
@@ -53,6 +63,10 @@ services:
       - 3306
     build:
       context: ./requirements/mariadb
+      args:
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     env_file:
         - .env
     networks:

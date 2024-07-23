@@ -20,7 +20,7 @@ COPY ./conf/package*.json .
 RUN npm config set fetch-retry-maxtimeout 6000000
 RUN npm config set fetch-retry-mintimeout 1000000
 RUN npm config set timeout 6000000
-RUN npm install
+RUN npm install --save-dev @babel/plugin-proposal-private-property-in-object
 RUN mkdir -p /usr/src/app/public
 COPY ./srcs/public/* /usr/src/app/public/
 RUN mkdir -p /usr/src/app/src
