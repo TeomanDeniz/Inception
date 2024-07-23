@@ -14,8 +14,6 @@ version: '3.9'
 services:
   nginx:
     container_name: nginx
-    env_file:
-      - .env
     build:
       context: ./requirements/nginx
       args:
@@ -38,8 +36,6 @@ services:
       - static
   wordpress:
     container_name: wordpress
-    env_file:
-      - .env
     expose:
       - 9000
     build:
@@ -48,8 +44,6 @@ services:
         - MYSQL_DATABASE
         - MYSQL_USER
         - MYSQL_PASSWORD
-        - MYSQL_ROOT_PASSWORD
-        - EMAIL
     networks:
       - connection
     volumes:
@@ -64,11 +58,10 @@ services:
     build:
       context: ./requirements/mariadb
       args:
-        MYSQL_DATABASE: ${MYSQL_DATABASE}
-        MYSQL_USER: ${MYSQL_USER}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    env_file:
-        - .env
+        - MYSQL_DATABASE
+        - MYSQL_USER
+        - MYSQL_PASSWORD
+        - MYSQL_ROOT_PASSWORD
     networks:
       - connection
     volumes:
@@ -130,6 +123,7 @@ services:
       - wordpress
   cadvisor:
     init: true
+    privileged: true
     container_name: cadvisor
     build:
       context: ./requirements/BONUS/cadvisor

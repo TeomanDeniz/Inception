@@ -6,7 +6,7 @@
 #    By: hdeniz <Discord:@teomandeniz>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/22 12:48:13 by hdeniz            #+#    #+#              #
-#    Updated: 2024/07/23 02:07:01 by hdeniz           ###   ########.fr        #
+#    Updated: 2024/07/22 12:51:01 by hdeniz           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,7 @@ RUN apt -y install nodejs npm
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY ./conf/package*.json .
-RUN npm config set fetch-retry-maxtimeout 6000000
-RUN npm config set fetch-retry-mintimeout 1000000
-RUN npm config set timeout 6000000
-RUN npm install --save-dev @babel/plugin-proposal-private-property-in-object
+RUN npm install
 RUN mkdir -p /usr/src/app/public
 COPY ./srcs/public/* /usr/src/app/public/
 RUN mkdir -p /usr/src/app/src

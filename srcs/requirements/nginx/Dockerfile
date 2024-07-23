@@ -11,16 +11,16 @@
 # **************************************************************************** #
 
 FROM debian:bullseye
+RUN set -eux ; echo 'Acquire::Retries "5";' > /etc/apt/apt.conf.d/80-retries
 ARG DOMAIN_NAME
 ARG CERTS_KEY
 ARG CERTS_CRT
-RUN set -eux ; echo 'Acquire::Retries "5";' > /etc/apt/apt.conf.d/80-retries
 RUN apt -y update && apt -y upgrade
 RUN apt -y install nginx openssl 
 RUN openssl req -x509 -sha256 -nodes \
 	-newkey rsa:4096 \
 	-days 365 \
-	-subj "/C=BR/ST=Sao Paulo/L=Sao Paulo/O=42SP/OU=Inception/CN=hdeniz.42.fr" \
+	-subj "/C=BR/ST=Sao Paulo/L=Sao Paulo/O=42SP/OU=Inception/CN=${DOMAIN_NAME}" \
 	-keyout ${CERTS_KEY} \
 	-out ${CERTS_CRT} 
 RUN sed -i 's/ssl_protocols.*/ssl_protocols TLSv1.3;/' /etc/nginx/nginx.conf
