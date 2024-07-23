@@ -27,8 +27,7 @@ function App()
 
 		try
 		{
-			const response = await \
-				fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+			const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
 
 			if (!response.ok)
 				throw new Error('No results found');

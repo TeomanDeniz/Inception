@@ -12,13 +12,14 @@
 # **************************************************************************** #
 
 service mariadb start
-mariadb -u root -e "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
-mariadb -u root -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
-mariadb -u root -e "GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';"
-mariadb -u root -e "FLUSH PRIVILEGES;"
-mariadb -u root $MYSQL_DATABASE < /usr/local/bin/dump.sql
-mariadb -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('$MYSQL_ROOT_PASSWORD');"
-mariadb -u root -e "FLUSH PRIVILEGES;"
-mariadb -u root -p $MYSQL_ROOT_PASSWORD "GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
-mariadb -u root -p $MYSQL_ROOT_PASSWORD "FLUSH PRIVILEGES;"
-service mariadb stop
+while ! mariadb -u root -e "SELECT 1" >/dev/null 2>&1; do
+  echo "Waiting for MariaDB to be ready..."
+  sleep 1
+done
+mariadb << EOF
+CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE_NAME;
+CREATE USER IF NOT EXISTS '$MYSQL_DATABASE_USER'@'%' IDENTIFIED BY '$MYSQL_DATABASE_PASSWORD';
+GRANT ALL PRIVILEGES ON $MYSQL_DATABASE_NAME.* TO '$MYSQL_DATABASE_USER'@'%';
+FLUSH PRIVILEGES;
+SHUTDOWN;
+EOF

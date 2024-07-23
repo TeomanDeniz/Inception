@@ -17,4 +17,4 @@ while ! wp db check --allow-root --path=/var/www/html/; do
 done
 wp plugin install redis-cache --activate --allow-root --path=/var/www/html/
 wp redis enable --allow-root --path=/var/www/html/
-php-fpm -F
+php-fpm7.4 -F
