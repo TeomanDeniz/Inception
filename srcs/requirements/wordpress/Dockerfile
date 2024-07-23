@@ -39,7 +39,9 @@ RUN mkdir -p /var/www/html/wp-content/uploads/2024/02/
 COPY ./conf/uploads/* /var/www/html/wp-content/uploads/2024/02/
 RUN chmod -R 755 /var/www/html/wp-content/uploads/
 RUN chmod 644 /var/www/html/wp-content/uploads/2024/02/*
+RUN chown -R www-data:www-data /var/www/html
 RUN chown -R www-data:www-data /var/www/html/wp-content/uploads/
 COPY ./tools/entrypoint.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin/entrypoint.sh
+RUN apt-get update -y
 ENTRYPOINT  [ "bash", "/usr/local/bin/entrypoint.sh" ]
