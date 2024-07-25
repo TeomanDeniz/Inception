@@ -22,7 +22,7 @@ RUN npm cache clean --force
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY ./conf/package*.json .
-RUN npm install -g serve
+RUN npm install
 RUN mkdir -p /usr/src/app/public
 COPY ./srcs/public/* /usr/src/app/public/
 RUN mkdir -p /usr/src/app/src
