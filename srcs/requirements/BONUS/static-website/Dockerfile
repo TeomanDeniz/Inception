@@ -16,13 +16,14 @@ RUN apt -y update && apt -y upgrade
 RUN apt -y install nodejs npm
 RUN npm set timeout=60000
 RUN npm set fetch-retries=5
-RUN npm set fetch-retry-mintimeout=10000
-RUN npm set fetch-retry-maxtimeout=60000
+RUN npm config set fetch-retry-mintimeout 20000
+RUN npm config set fetch-retry-maxtimeout 120000
 RUN npm cache clean --force
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY ./conf/package*.json .
 RUN npm install
+RUN npm i react-scripts
 RUN mkdir -p /usr/src/app/public
 COPY ./srcs/public/* /usr/src/app/public/
 RUN mkdir -p /usr/src/app/src
