@@ -19,7 +19,6 @@ folders:
 	@test -d /home/$(USER)/data/mariadb || mkdir /home/$(USER)/data/mariadb
 
 volumes:
-	@mkdir -p /home/$(USER)/data/wordpress
 	@docker volume create --driver local --opt type=none --opt \
 		device=/home/$(USER)/data/wordpress --opt o=bind wordpress
 	@mkdir -p /home/$(USER)/data/mariadb
@@ -39,6 +38,6 @@ clean: down
 	@docker system prune -af
 	@test -d /home/$(USER)/data && rm -rf /home/$(USER)/data
 
-re: clean all
+re: down up
 
 PHONY: all clean re up down

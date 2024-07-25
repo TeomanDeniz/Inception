@@ -25,11 +25,11 @@ RUN openssl req -x509 -sha256 -nodes \
 	-out ${CERTS_CRT} 
 RUN sed -i 's/ssl_protocols.*/ssl_protocols TLSv1.3;/' /etc/nginx/nginx.conf
 COPY ./conf/https.conf /etc/nginx/conf.d/
-RUN sed -i "s|INSERT_DOMAIN_NAME_HERE|${DOMAIN_NAME}|g" \
+RUN sed -i "s|!DOMAIN_NAME!|${DOMAIN_NAME}|g" \
 	/etc/nginx/conf.d/https.conf
-RUN sed -i "s|INSERT_KEY_PATH_HERE|${CERTS_KEY}|g" /etc/nginx/conf.d/https.conf
-RUN sed -i "s|INSERT_CRT_PATH_HERE|${CERTS_CRT}|g" /etc/nginx/conf.d/https.conf
+RUN sed -i "s|!KEY_PATH!|${CERTS_KEY}|g" /etc/nginx/conf.d/https.conf
+RUN sed -i "s|!CRT_PATH!|${CERTS_CRT}|g" /etc/nginx/conf.d/https.conf
 COPY ./conf/http.conf /etc/nginx/conf.d/
-RUN sed -i "s|INSERT_DOMAIN_NAME_HERE|${DOMAIN_NAME}|g" \
+RUN sed -i "s|!DOMAIN_NAME!|${DOMAIN_NAME}|g" \
 	/etc/nginx/conf.d/https.conf
 ENTRYPOINT	[ "nginx", "-g", "daemon off;" ]

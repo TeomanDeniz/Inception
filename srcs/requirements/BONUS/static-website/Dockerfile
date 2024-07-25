@@ -14,10 +14,15 @@ FROM debian:bullseye
 RUN set -eux ; echo 'Acquire::Retries "5";' > /etc/apt/apt.conf.d/80-retries
 RUN apt -y update && apt -y upgrade
 RUN apt -y install nodejs npm
+RUN npm set timeout=60000
+RUN npm set fetch-retries=5
+RUN npm set fetch-retry-mintimeout=10000
+RUN npm set fetch-retry-maxtimeout=60000
+RUN npm cache clean --force
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY ./conf/package*.json .
-RUN npm install
+RUN npm install -g serve
 RUN mkdir -p /usr/src/app/public
 COPY ./srcs/public/* /usr/src/app/public/
 RUN mkdir -p /usr/src/app/src

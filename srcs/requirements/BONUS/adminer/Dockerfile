@@ -17,3 +17,4 @@ RUN apt -y install wget php7.4 php7.4-fpm
 COPY ./tools/entrypoint.sh /usr/local/bin/
 RUN chmod 755 /usr/local/bin/entrypoint.sh
 ENTRYPOINT  [ "bash", "/usr/local/bin/entrypoint.sh" ]
+CMD [ "/usr/sbin/php-fpm7.4", "-F" ]
