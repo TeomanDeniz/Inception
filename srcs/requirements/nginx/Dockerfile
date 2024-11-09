@@ -31,5 +31,5 @@ RUN sed -i "s|!KEY_PATH!|${CERTS_KEY}|g" /etc/nginx/conf.d/https.conf
 RUN sed -i "s|!CRT_PATH!|${CERTS_CRT}|g" /etc/nginx/conf.d/https.conf
 COPY ./conf/http.conf /etc/nginx/conf.d/
 RUN sed -i "s|!DOMAIN_NAME!|${DOMAIN_NAME}|g" \
-	/etc/nginx/conf.d/https.conf
+	/etc/nginx/conf.d/http.conf
 ENTRYPOINT	[ "nginx", "-g", "daemon off;" ]
